@@ -9,7 +9,7 @@ import java.util.Date
 @Entity(tableName = "tasks")
 data class Task(
     @PrimaryKey(autoGenerate = true)
-    val id: Int?,
+    var id: Int? = null,
     val title: String? = null,
     val date: Date? = null,
     val isDone: Boolean? = false,
