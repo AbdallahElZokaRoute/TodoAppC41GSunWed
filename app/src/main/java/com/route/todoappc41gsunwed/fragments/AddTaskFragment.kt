@@ -8,10 +8,12 @@ import android.view.ViewGroup
 import android.widget.Toast
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.route.todoappc41gsunwed.R
+import com.route.todoappc41gsunwed.clearTime
 import com.route.todoappc41gsunwed.database.TaskDatabase
 import com.route.todoappc41gsunwed.database.model.Task
 import com.route.todoappc41gsunwed.databinding.FragmentAddTaskBinding
 import com.route.todoappc41gsunwed.fragments.callbacks.OnTodoAddedListener
+import com.route.todoappc41gsunwed.setDate
 import java.util.Calendar
 
 class AddTaskFragment : BottomSheetDialogFragment() {
@@ -39,9 +41,8 @@ class AddTaskFragment : BottomSheetDialogFragment() {
                 DatePickerDialog(
                     requireActivity(),
                     { view, year, month, dayOfMonth ->
-                        calendar.set(Calendar.YEAR, year)
-                        calendar.set(Calendar.MONTH, month)
-                        calendar.set(Calendar.DAY_OF_MONTH, dayOfMonth)
+                        calendar.setDate(dayOfMonth, month, year)
+                        calendar.clearTime()
                         binding.selectDateTv.text = "$dayOfMonth/${month + 1}/$year"
                     },
                     calendar.get(Calendar.YEAR),
@@ -52,7 +53,11 @@ class AddTaskFragment : BottomSheetDialogFragment() {
             datePickerDialog.show()
         }
     }
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        // Use the Kotlin extension in the fragment-ktx artifact.
 
+    }
     private fun addTaskIntoDataBase() {
         val task = Task(title = binding.title.text.toString(), date = calendar.time)
         TaskDatabase.getInstance().getTasksDao().insertTask(task)

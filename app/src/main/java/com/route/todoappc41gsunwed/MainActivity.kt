@@ -1,8 +1,13 @@
 package com.route.todoappc41gsunwed
 
+import android.content.Intent
+import android.os.Build
 import android.os.Bundle
+import android.widget.Button
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import com.route.todoappc41gsunwed.database.model.Task
 import com.route.todoappc41gsunwed.fragments.AddTaskFragment
 import com.route.todoappc41gsunwed.databinding.ActivityMainBinding
 import com.route.todoappc41gsunwed.fragments.SettingsFragment
@@ -20,12 +25,12 @@ class MainActivity : AppCompatActivity() {
         binding.addTaskFab.setOnClickListener {
             val bottomSheetDialogFragment = AddTaskFragment()
             bottomSheetDialogFragment.onTodoAddedListener = OnTodoAddedListener {
-                tasksListFragment.getTaskListFromDatabase()
+                tasksListFragment.getAllTaskListFromDatabase()
             }
             bottomSheetDialogFragment.show(supportFragmentManager, null)
         }
-        binding.todoBottomNavigationView.setOnItemSelectedListener {
-            when (it.itemId) {
+        binding.todoBottomNavigationView.setOnItemSelectedListener { menuItem ->
+            when (menuItem.itemId) {
                 R.id.navigation_list -> {
                     showFragment(tasksListFragment)
                 }

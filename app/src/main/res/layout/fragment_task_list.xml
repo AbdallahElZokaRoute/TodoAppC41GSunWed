@@ -30,6 +30,15 @@
         app:layout_constraintBottom_toBottomOf="@id/view_top_blue_background"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+    <!--
+        5 - 2 - 2025 -> Start Date   Local Date
+
+        5 - 5 - 2025 -> End Date
+        // 1- Data Entry by yourself
+        // 2- Calendar Library -> Github ->
+        // 3- APIs
+    -->
+
 
     <com.kizitonwose.calendar.view.WeekCalendarView
         android:id="@+id/week_calendar_view"

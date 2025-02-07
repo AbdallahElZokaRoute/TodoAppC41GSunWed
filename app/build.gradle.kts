@@ -40,6 +40,7 @@ android {
 
 dependencies {
     implementation(libs.androidx.room.runtime)
+    implementation("androidx.fragment:fragment-ktx:1.8.5")
     ksp(libs.androidx.room.compiler)
     implementation(libs.calendar.view)
     implementation(libs.androidx.core.ktx)
